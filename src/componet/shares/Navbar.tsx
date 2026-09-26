@@ -7,7 +7,13 @@ const Navbar = () => {
     return (
       <div className="sticky top-0 z-50 w-full bg-[#0C0D10]  shadow-md">
         <nav className="container mx-auto flex items-center justify-between p-4">
-          <Image src={Logo} alt="Logo" className="w-[30px] h-[30px] " />
+          <div className="flex items-center gap-3">
+            <Image
+              src={Logo}
+              alt="Logo"
+              className="h-12 w-12 object-contain"
+            />
+          </div>
           <ul className="flex items-center gap-4 rounded-xl ">
             <Link
               href="/"
