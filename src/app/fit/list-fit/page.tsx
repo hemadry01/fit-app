@@ -1,6 +1,7 @@
 "use client";
 
 import ListedFitCard from "@/app/componet/shares/ListedFitCard";
+import ListedFitSaveCard from "@/app/componet/shares/planDetails/ListedFitSaveCard";
 import { FitContext } from "@/context/FitContext";
 import { IFit } from "@/type/fitType";
 import Link from "next/link";
@@ -12,10 +13,14 @@ const {
   setPlan,
   saved,
   setSaved,
-  calories,
-  setCalories,
-  duration,
-  setDuration,
+  savedCalories,
+  setSavedCalories,
+  savedDuration,
+  setSavedDuration,
+  planCalories,
+  setPlanCalories,
+  planDuration,
+  setPlanDuration,
 } = useContext(FitContext);
 
   return (
@@ -39,11 +44,11 @@ const {
             </div>
             <div>
               <h2 className="px-5 font-semibold text-white">Minutes</h2>
-              <p className="px-10  text-[#C2F800] text-2xl">{duration}</p>
+              <p className="px-10  text-[#C2F800] text-2xl">{planDuration}</p>
             </div>
             <div>
               <h2 className="px-5 font-semibold text-white">Calories</h2>
-              <p className="px-10  text-[#C2F800] text-2xl">{calories}</p>
+              <p className="px-10  text-[#C2F800] text-2xl">{planCalories}</p>
             </div>
           </div>
           <div className="mt-14 rounded-lg border border-[#2A2D35] bg-[#15171D] px-6 py-3">
@@ -52,7 +57,7 @@ const {
                 return <ListedFitCard key={fit.id} fit={fit} />;
               })
             ) : (
-              <div className="flex min-h-[300px] flex-col items-center justify-center text-center">
+              <div className="flex min-h-[200px] flex-col items-center justify-center text-center">
                 <h2 className="text-lg font-semibold text-white">
                   NOTHING HERE YET
                 </h2>
@@ -82,27 +87,39 @@ const {
           <div className="flex justify-between items-center mx-auto rounded-lg border border-[#2A2D35] bg-[#15171D] px-6 py-3">
             <div>
               <h2 className="px-5 font-semibold text-white">Exercises</h2>
-              <p className="px-10  text-[#C2F800] text-2xl">0</p>
+              <p className="px-10  text-[#C2F800] text-2xl">{saved.length}</p>
             </div>
             <div>
               <h2 className="px-5 font-semibold text-white">Minutes</h2>
-              <p className="px-10  text-[#C2F800] text-2xl">0</p>
+              <p className="px-10  text-[#C2F800] text-2xl">{savedDuration}</p>
             </div>
             <div>
               <h2 className="px-5 font-semibold text-white">Calories</h2>
-              <p className="px-10  text-[#C2F800] text-2xl">0</p>
+              <p className="px-10  text-[#C2F800] text-2xl">{savedCalories}</p>
             </div>
           </div>
           <div>
             <div className="mt-14 rounded-lg border border-[#2A2D35] bg-[#15171D] px-6 py-3">
               {saved.length > 0 ? (
                 saved.map((fit: IFit) => {
-                  return <></>;
+                  return <ListedFitSaveCard key={fit.id} fit={fit} />;
                 })
               ) : (
-                <p className="text-center text-lg font-semibold text-white">
-                  No read books found
-                </p>
+                <div className="flex min-h-[200px] flex-col items-center justify-center text-center">
+                  <h2 className="text-lg font-semibold text-white">
+                    NOTHING HERE YET
+                  </h2>
+
+                  <p className="text-white">
+                    Browse the library and add a lift to get today moving.
+                  </p>
+
+                  <Link href="/">
+                    <button className="mt-2 rounded-[7px] bg-[#C2F800] p-1 text-[12px] font-semibold">
+                      Go to workouts
+                    </button>
+                  </Link>
+                </div>
               )}
             </div>
           </div>

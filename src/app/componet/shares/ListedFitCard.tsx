@@ -14,14 +14,21 @@ interface IListFitCardProps{
 }
 
 const ListedFitCard = ({fit}:IListFitCardProps) => {
-  const { plan, setPlan, saved, setSaved, calories, setCalories, duration, setDuration } = useContext(FitContext);
+  const {
+    plan,
+    setPlan,
+    planCalories,
+    setPlanCalories,
+    planDuration,
+    setPlanDuration,
+  } = useContext(FitContext);
 
   const removeListFitData = (fit:IFit)=>{
 
-    const resetPlan = plan.filter((item)=>item.name !=fit.name);
-    setDuration(duration - fit.duration);
-    setCalories(calories - fit.caloriesBurned);
+    const resetPlan = plan.filter((item) => item.id !== fit.id);
     setPlan(resetPlan);
+    setPlanDuration(planDuration - fit.duration);
+    setPlanCalories(planCalories - fit.caloriesBurned);
      toast.warn(`You plan"${fit.name}" has delete`);
   }
 

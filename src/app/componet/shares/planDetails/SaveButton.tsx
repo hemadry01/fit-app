@@ -5,10 +5,19 @@ import React, { useContext } from "react";
 import { toast } from "react-toastify";
 
 const SaveButton = ({ fit }: { fit: IFit }) => {
-  const { saved, setSaved } = useContext(FitContext);
+  const {
+    saved,
+    setSaved,
+    savedCalories,
+    setSavedCalories,
+    savedDuration,
+    setSavedDuration,
+  } = useContext(FitContext);
 
   const handleSavePlane = () => {
     setSaved([...saved, fit]);
+    setSavedDuration(savedDuration + fit.duration);
+    setSavedCalories(savedCalories + fit.caloriesBurned);
     toast.success(`You plan"${fit.name}" saved`);
   };
 
