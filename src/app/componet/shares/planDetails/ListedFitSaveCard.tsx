@@ -67,8 +67,16 @@ const ListedFitSaveCard = ({ fit }: IListFitCardProps) => {
         <Link href={`/fit/${fit.id}`}>
           <button className="btn btn-outline btn-primary">View Details</button>
         </Link>
-        <button className="btn btn-success">Mark as Done</button>
-        <button className="text-white" onClick={() => removeListFitSaveData(fit)}>
+        <button
+          className="btn btn-success"
+          onClick={() => removeListFitSaveData(fit)}
+        >
+          Mark as Done
+        </button>
+        <button
+          className="text-white"
+          onClick={() => removeListFitSaveData(fit)}
+        >
           <Image
             src={Remove}
             alt="Remove"

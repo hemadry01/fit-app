@@ -70,7 +70,12 @@ const ListedFitCard = ({fit}:IListFitCardProps) => {
               View Details
             </button>
           </Link>
-          <button className="btn btn-success">Mark as Done</button>
+          <button
+            className="btn btn-success"
+            onClick={() => removeListFitData(fit)}
+          >
+            Mark as Done
+          </button>
           <button className="text-white" onClick={() => removeListFitData(fit)}>
             <Image
               src={Remove}

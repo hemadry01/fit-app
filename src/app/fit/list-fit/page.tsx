@@ -24,9 +24,13 @@ const {
 } = useContext(FitContext);
 
   return (
-    <div>
-      <h2>MY PLAN</h2>
-      <p>Cap of five lifts for today. Finish them, then load more.</p>
+    <div className="bg-[#15171D]">
+      <div className="px-6 py-3">
+        <h2 className="text-white font-semibold">MY PLAN</h2>
+        <p className="text-white">
+          Cap of five lifts for today. Finish them, then load more.
+        </p>
+      </div>
 
       {/* name of each tab group should be unique */}
       <div className="tabs tabs-box">
