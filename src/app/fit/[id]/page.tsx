@@ -1,3 +1,5 @@
+import PlanButton from "@/app/componet/shares/planDetails/PlanButton";
+import SaveButton from "@/app/componet/shares/planDetails/SaveButton";
 import { IFit } from "@/type/fitType";
 import Image from "next/image";
 import React from "react";
@@ -148,39 +150,8 @@ const FitDetailsPage = async ({ params }: IFitDetailsPageProps) => {
                 ))}
               </div>
               <div className="flex items-center gap-3 mt-3">
-                <button
-                  className="
-                    px-4 py-2
-                    rounded-lg
-                    bg-[#C2F800]
-                    text-[#15171D]
-                    text-xs font-semibold
-                    shadow-sm
-                    transition-all duration-200
-                    hover:bg-[#b5e900]
-                    hover:shadow-md
-                    active:scale-95
-                  "
-                >
-                  Add to today's plan
-                </button>
-
-                <button
-                  className="
-                      px-4 py-2
-                      rounded-lg
-                      border border-[#C2F800]
-                      bg-transparent
-                      text-[#C2F800]
-                      text-xs font-semibold
-                      transition-all duration-200
-                      hover:bg-[#C2F800]
-                      hover:text-[#15171D]
-                      active:scale-95
-                    "
-                >
-                  Save for later
-                </button>
+                <PlanButton fit={fit} />
+                <SaveButton fit={fit} />
               </div>
             </div>
           </div>

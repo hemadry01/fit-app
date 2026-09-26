@@ -1,4 +1,4 @@
-import FitCard from '@/componet/shares/FitCard';
+import FitCard from '@/app/componet/shares/FitCard';
 import { IFit } from '@/type/fitType';
 import React from 'react';
 

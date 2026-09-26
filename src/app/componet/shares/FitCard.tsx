@@ -1,10 +1,11 @@
 import { IFit } from '@/type/fitType';
 import Image from 'next/image';
-import React from 'react';
+import React, { useContext } from 'react';
 import TimeImage from "@/assets/time.png";
 import CaloryImage from "@/assets/calorey.png";
 import StarImage from "@/assets/star.png";
 import Link from 'next/link';
+import { FitContext } from '@/context/FitContext';
 
 
 interface IFitCardProps{
