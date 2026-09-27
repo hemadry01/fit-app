@@ -14,7 +14,7 @@ interface IFitCardProps{
 
 const FitCard = ({fit}:IFitCardProps) => {
     return (
-      <Link href={`https://api.abcz.workers.dev/api/fitlog/${fit.id} `}>
+      <Link href={`/fit/${fit.id}`}>
         <div className="w-[500px]  bg-[#15171D] rounded-2xl mb-4">
           <Image
             src={fit.image}

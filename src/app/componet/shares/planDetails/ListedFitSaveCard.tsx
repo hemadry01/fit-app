@@ -14,6 +14,13 @@ interface IListFitCardProps {
 }
 
 const ListedFitSaveCard = ({ fit }: IListFitCardProps) => {
+
+   const context = useContext(FitContext);
+      
+        if (!context) {
+          return null;
+        }
+
      const {
        saved,
        setSaved,
@@ -21,7 +28,7 @@ const ListedFitSaveCard = ({ fit }: IListFitCardProps) => {
        setSavedCalories,
        savedDuration,
        setSavedDuration,
-     } = useContext(FitContext);
+     } = context;
 
      const removeListFitSaveData = (fit: IFit) => {
        const resetSave = saved.filter((item) => item.id !== fit.id);

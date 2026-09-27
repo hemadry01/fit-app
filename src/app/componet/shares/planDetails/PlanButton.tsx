@@ -5,6 +5,13 @@ import React, { useContext } from "react";
 import { toast } from "react-toastify";
 
 const PlanButton = ({ fit }: { fit: IFit }) => {
+
+  const context = useContext(FitContext);
+    
+      if (!context) {
+        return null;
+      }
+
   const {
     plan,
     setPlan,
@@ -12,7 +19,8 @@ const PlanButton = ({ fit }: { fit: IFit }) => {
     setPlanCalories,
     planDuration,
     setPlanDuration,
-  } = useContext(FitContext);
+  } = context;
+  
   const handlePlanSet = () => {
     setPlan([...plan, fit]);
     setPlanDuration(planDuration + fit.duration);

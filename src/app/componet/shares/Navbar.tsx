@@ -8,7 +8,13 @@ import { usePathname } from "next/navigation";
 import { FitContext } from "@/context/FitContext";
 
 const Navbar = () => {
-  const { plan, saved } = useContext(FitContext);
+
+  const fitContext = useContext(FitContext);
+  if (!fitContext) {
+    throw new Error("Navbar must be used within a FitContext provider");
+  }
+  
+  const { plan, saved } = fitContext;
   const pathname = usePathname();
 
   const menuItems = [

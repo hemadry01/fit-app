@@ -14,6 +14,12 @@ interface IListFitCardProps{
 }
 
 const ListedFitCard = ({fit}:IListFitCardProps) => {
+  const context = useContext(FitContext);
+
+  if (!context) {
+    return null;
+  }
+
   const {
     plan,
     setPlan,
@@ -21,7 +27,7 @@ const ListedFitCard = ({fit}:IListFitCardProps) => {
     setPlanCalories,
     planDuration,
     setPlanDuration,
-  } = useContext(FitContext);
+  } = context;
 
   const removeListFitData = (fit:IFit)=>{
 

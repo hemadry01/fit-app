@@ -10,14 +10,16 @@ interface IFitDetailsPageProps {
   }>;
 }
 
-const getFit = async (): Promise<IFit[]> => {
-  const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch fit data");
-  }
-
-  return res.json();
+const getFit = async () => {
+   try {
+     const res = await fetch(process.env.NEXT_PUBLIC_SERVER_BASE_URL!);
+     if (!res.ok) {
+       throw new Error("Failed to fetch fit data");
+     }
+     return res.json();
+   } catch (error) {
+     console.error("Error featching fit data", error);
+   }
 };
 
 const FitDetailsPage = async ({ params }: IFitDetailsPageProps) => {
@@ -64,7 +66,7 @@ const FitDetailsPage = async ({ params }: IFitDetailsPageProps) => {
               <span className=" text-[#9CA3AF]">{fit.description}</span>
             </p>
             <div className="flex gap-2 py-4 text-[14px] text-[#15171D]">
-              {fit.muscleGroups?.map((muscle, index) => (
+              {fit.muscleGroups.map((muscle: string, index: number) => (
                 <div key={index} className="rounded-2xl bg-[#C2F800] px-4 ">
                   {muscle}
                 </div>
@@ -139,7 +141,7 @@ const FitDetailsPage = async ({ params }: IFitDetailsPageProps) => {
               </h2>
 
               <div className="space-y-2">
-                {fit.instructions?.map((instruction, index) => (
+                {fit.instructions.map((instruction: string, index: number) => (
                   <div key={index} className="flex bg-[#15171D] p-4">
                     <div className="flex h-8 w-8 shrink-0  text-sm text-white">
                       {index + 1}

@@ -8,6 +8,11 @@ import Link from "next/link";
 import React, { useContext, useState } from "react";
 
 const ListFit = () => {
+  const context = useContext(FitContext);
+  
+    if (!context) {
+      return null;
+    }
 const {
   plan,
   setPlan,
@@ -21,7 +26,7 @@ const {
   setPlanCalories,
   planDuration,
   setPlanDuration,
-} = useContext(FitContext);
+} = context;
 
 const [sortBy, setSortBy] = useState<"duration" | "calories" | "rating">(
   "duration",
