@@ -17,7 +17,7 @@ const Banner = () => {
               <br />
               into today's plan, and watch the week's work add up.
             </p>
-            <button className="bg-[#C2F800] rounded-[7px] p-1 text-[12px] font-semibold mt-2">
+            <button className="rounded-[5px] px-4 py-2 text-sm font-semibold bg-[#C2F800] text-black mt-4">
               BROWSE WORKOUTS
             </button>
           </div>

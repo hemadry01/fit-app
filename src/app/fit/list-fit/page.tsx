@@ -5,7 +5,7 @@ import ListedFitSaveCard from "@/app/componet/shares/planDetails/ListedFitSaveCa
 import { FitContext } from "@/context/FitContext";
 import { IFit } from "@/type/fitType";
 import Link from "next/link";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 const ListFit = () => {
 const {
@@ -23,13 +23,52 @@ const {
   setPlanDuration,
 } = useContext(FitContext);
 
+const [sortBy, setSortBy] = useState<"duration" | "calories" | "rating">(
+  "duration",
+);
+
+  const sortFitList=(fits:IFit[])=>{
+    const sortdFit =[...fits];
+    if(sortBy ==="duration"){
+      sortdFit.sort((a, b) => b.duration - a.duration);
+    } else if (sortBy === "calories") {
+      sortdFit.sort((a, b) => b.caloriesBurned - a.caloriesBurned);
+    } else {
+      sortdFit.sort((a, b) => b.rating - a.rating);
+    }
+    return sortdFit;
+  }
+  
+  const sortedPlan = sortFitList(plan);
+  const sortSaved = sortFitList(saved);
+
+  console.log(sortedPlan);
+  console.log(sortSaved);
+
   return (
-    <div className="bg-[#15171D]">
-      <div className="px-6 py-3">
-        <h2 className="text-white font-semibold">MY PLAN</h2>
-        <p className="text-white">
-          Cap of five lifts for today. Finish them, then load more.
-        </p>
+    <div className="bg-[#15171D] items-center justify-center">
+      <div className="px-6 py-3 flex justify-between ml-6 mr-6">
+        <div>
+          <h2 className="text-white font-semibold">MY PLAN</h2>
+          <p className="text-white">
+            Cap of five lifts for today. Finish them, then load more.
+          </p>
+        </div>
+        <div>
+          <select
+            value={sortBy}
+            onChange={(e) =>
+              setSortBy(e.target.value as "duration" | "calories" | "rating")
+            }
+            defaultValue="defaultValue"
+            className="select text-white"
+          >
+            <option disabled={true}>Short by</option>
+            <option value={"duration"}>Duration</option>
+            <option value={"calories"}>Calories</option>
+            <option value={"rating"}>Rating</option>
+          </select>
+        </div>
       </div>
 
       {/* name of each tab group should be unique */}
@@ -37,7 +76,7 @@ const {
         <input
           type="radio"
           name="my_tabs_6"
-          className="tab text-white"
+          className="tab text-white ml-10"
           aria-label="Today's Plan"
         />
         <div className="tab-content bg-base-100 border-base-300 p-6">
@@ -56,8 +95,8 @@ const {
             </div>
           </div>
           <div className="mt-14 rounded-lg border border-[#2A2D35] bg-[#15171D] px-6 py-3">
-            {plan.length > 0 ? (
-              plan.map((fit: IFit) => {
+            {sortedPlan.length > 0 ? (
+              sortedPlan.map((fit: IFit) => {
                 return <ListedFitCard key={fit.id} fit={fit} />;
               })
             ) : (
@@ -104,8 +143,8 @@ const {
           </div>
           <div>
             <div className="mt-14 rounded-lg border border-[#2A2D35] bg-[#15171D] px-6 py-3">
-              {saved.length > 0 ? (
-                saved.map((fit: IFit) => {
+              {sortSaved.length > 0 ? (
+                sortSaved.map((fit: IFit) => {
                   return <ListedFitSaveCard key={fit.id} fit={fit} />;
                 })
               ) : (
