@@ -60,7 +60,6 @@ const [sortBy, setSortBy] = useState<"duration" | "calories" | "rating">(
             onChange={(e) =>
               setSortBy(e.target.value as "duration" | "calories" | "rating")
             }
-            defaultValue="defaultValue"
             className="select text-white"
           >
             <option disabled={true}>Short by</option>
